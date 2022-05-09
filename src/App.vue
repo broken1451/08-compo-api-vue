@@ -1,9 +1,22 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/about">About</router-link> |
+    <router-link :to="{ name: 'counter' }">Counter</router-link> |
+    <router-link :to="{ name: 'user' }">Usuarios</router-link> |
+    <router-link :to="{ name: 'pokemon-search' }">Buscar</router-link> |
+    <router-link :to="{ name: 'todo' }">To-Do</router-link> |
+    <router-link :to="{ name: 'slots' }">Slots</router-link> 
+
+    <!-- encargado de renderizar dependiendo de la ruta -->
+    <router-view v-slot="{ Component, route }">
+      <!-- <p>{{ route }}</p> -->
+      <keep-alive>
+        <component :is="Component" :key='route.name' />
+      </keep-alive>
+    </router-view>
+    <!-- encargado de renderizar dependiendo de la ruta -->
   </div>
-  <router-view/>
 </template>
 
 <style>
